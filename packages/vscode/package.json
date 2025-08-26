@@ -87,7 +87,7 @@
     "build": "tsdown",
     "dev": "pnpm build --watch --sourcemap",
     "generate": "vscode-ext-gen --output src/generated/meta.ts",
-    "package": "vsce package --no-dependencies",
+    "package": "vsce package --no-dependencies && tsx ./scripts/after-package.ts",
     "release": "vsxpub --no-dependencies",
     "prepare": "pnpm generate",
     "vscode:prepublish": "pnpm build"
