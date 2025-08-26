@@ -1,5 +1,10 @@
 import type { Grid, List } from '@raycast/api'
 
+export enum EntryType {
+  Folders = 'Folders',
+  Files = 'Files',
+  AllTypes = 'All Types',
+}
 export type ListType = 'list'
 export type GridType = 'grid'
 

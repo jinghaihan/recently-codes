@@ -1,17 +1,20 @@
 import type { EntryLike } from 'recently-codes'
 import { fileURLToPath } from 'node:url'
-import { Action, ActionPanel, Grid, open } from '@raycast/api'
+import { Action, ActionPanel, Grid, Icon, open, openExtensionPreferences } from '@raycast/api'
 import { usePromise } from '@raycast/utils'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { APPLICATION_NAME_MAP } from 'recently-codes'
 import { stringToColor } from './color'
 import { useRecentlyCodes } from './database'
 import { getBundleId, getEditorApplication } from './editor'
-import { Layout, LayoutItem, LayoutSection } from './layout'
+import { Layout, LayoutDropdown, LayoutDropdownItem, LayoutDropdownSection, LayoutItem, LayoutSection } from './layout'
 import { preferences } from './preferences'
+import { EntryType } from './types'
+import { filterEntriesByType } from './utils'
 
 export default function Command() {
   const { recentlyCodes, loading } = useRecentlyCodes()
+  const [type, setType] = useState<EntryType | null>(null)
 
   const fetchEditorApp = useCallback(async () => {
     return getEditorApplication(preferences.editor)
@@ -26,11 +29,14 @@ export default function Command() {
       searchBarPlaceholder="Search recent projects..."
       isLoading={loading}
       filtering={{ keepSectionOrder: preferences.keepSectionOrder }}
+      searchBarAccessory={<EntryTypeDropdown onChange={setType} />}
     >
       <LayoutSection title="Recent Projects">
-        {recentlyCodes.map((entry: EntryLike) => (
-          <EntryItem key={entry.uri} entry={entry} editorApp={editorApp} />
-        ))}
+        {recentlyCodes
+          .filter(filterEntriesByType(type))
+          .map((entry: EntryLike) => (
+            <EntryItem key={entry.uri} entry={entry} editorApp={editorApp} />
+          ))}
       </LayoutSection>
     </Layout>
   )
@@ -88,9 +94,35 @@ function EntryItem(props: { entry: EntryLike, editorApp?: any }) {
               shortcut={{ modifiers: ['cmd', 'shift'], key: '.' }}
             />
           </ActionPanel.Section>
+          <Action
+            title="Open Preferences"
+            icon={Icon.Gear}
+            onAction={openExtensionPreferences}
+          />
         </ActionPanel>
       )}
     >
     </LayoutItem>
+  )
+}
+
+function EntryTypeDropdown(props: { onChange: (type: EntryType) => void }) {
+  return (
+    <LayoutDropdown
+      tooltip="Filter project types"
+      defaultValue={EntryType.AllTypes}
+      storeValue
+      onChange={value => props.onChange(value as EntryType)}
+    >
+      <LayoutDropdownItem title="All Types" value="All Types" />
+      <LayoutDropdownSection>
+        {Object.values(EntryType)
+          .filter(key => key !== 'All Types')
+          .sort()
+          .map(key => (
+            <LayoutDropdownItem key={key} title={key} value={key} />
+          ))}
+      </LayoutDropdownSection>
+    </LayoutDropdown>
   )
 }
