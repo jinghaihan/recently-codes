@@ -6,9 +6,9 @@ export * from './types'
 export { execFileAsync, hasSqlite3 } from 'recently-codes'
 
 export async function processCli(path: string, options: SearchOptions = {}) {
-  const { codes, gitBranch = false } = options
+  const { editors, gitBranch = false } = options
   const args: string[] = [path]
-  codes?.forEach(i => args.push('--codes', `"${i}"`))
+  editors?.forEach(i => args.push('--editors', `"${i}"`))
   if (gitBranch) {
     args.push('--git-branch')
   }

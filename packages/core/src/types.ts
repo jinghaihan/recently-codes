@@ -4,7 +4,7 @@ export type CodeName = (typeof CODE_NAME_CHOICES)[number]
 export type EditorName = keyof typeof EDITOR_NAME_MAP
 
 export interface SearchOptions {
-  codes?: string[]
+  editors?: string[]
   gitBranch?: boolean
 }
 

@@ -14,11 +14,13 @@
     "url": "https://github.com/jinghaihan/recently-codes/issues"
   },
   "keywords": [
-    "pnpm",
-    "pnpm-catalogs",
-    "pnpm-workspace",
-    "catalog",
-    "workspace"
+    "vscode",
+    "cursor",
+    "windsurf",
+    "recent",
+    "history",
+    "codes",
+    "projects"
   ],
   "exports": {
     ".": "./dist/index.mjs",

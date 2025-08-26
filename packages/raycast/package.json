@@ -15,9 +15,12 @@
   },
   "keywords": [
     "vscode",
+    "cursor",
+    "windsurf",
+    "recent",
     "history",
-    "projects",
-    "recently-codes"
+    "codes",
+    "projects"
   ],
   "icon": "icon.png",
   "commands": [

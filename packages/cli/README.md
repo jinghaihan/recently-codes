@@ -33,7 +33,7 @@ pnpm add recently-codes-cli
 
 ```bash
 # List from specific editors
-recently-codes --editor cursor --editor vscode --git-branch
+recently-codes --editors cursor --editors vscode --git-branch
 ```
 
 ## Core Features

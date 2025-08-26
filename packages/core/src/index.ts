@@ -18,10 +18,9 @@ export async function getRecentlyCodesForIDE(codeName: CodeName): Promise<EntryL
 }
 
 export async function getRecentlyCodes(options: SearchOptions): Promise<EntryLike[]> {
-  const { codes, gitBranch = false } = options
+  const { editors, gitBranch = false } = options
 
-  const resolved = normalizeCodes(codes)
-
+  const resolved = normalizeCodes(editors)
   const opened: Record<string, EntryLike[]> = {}
   await Promise.all(resolved.map(async (code) => {
     const appName = CODE_NAME_MAP[code]

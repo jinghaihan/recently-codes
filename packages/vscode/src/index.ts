@@ -17,7 +17,7 @@ const { activate, deactivate } = defineExtension(async (ctx: ExtensionContext) =
 
       logger.info(`CLI path: ${CLI_PATH}`)
       const { processCli } = await import('recently-codes-cli')
-      const recentlyCodes = await processCli(CLI_PATH, { codes: config.editors, gitBranch: config.showGitBranch })
+      const recentlyCodes = await processCli(CLI_PATH, { editors: config.editors, gitBranch: config.showGitBranch })
       logger.info(`CLI output: \n ${JSON.stringify(recentlyCodes, null, 2)}`)
 
       if (recentlyCodes.length === 0) {
