@@ -2,7 +2,7 @@
   "publisher": "octohash",
   "name": "crosside-recently-codes",
   "displayName": "Crosside Recently Codes",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@10.15.0",
   "description": "A VSCode extension for listing recent projects from VSCode and its forks like Cursor and Windsurf.",
