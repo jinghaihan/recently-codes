@@ -1,6 +1,6 @@
 {
   "name": "recently-codes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "packageManager": "pnpm@10.15.0",
   "description": "List recent projects from VSCode and its forks like Cursor and Windsurf.",
   "author": "jinghaihan",
