@@ -13,7 +13,9 @@ type ExtensionPreferences = {
   /** View Layout - Select the layout of the view */
   "layout": "list" | "grid",
   /** Advanced - Keep the order of the sections while searching folders, files, etc. */
-  "keepSectionOrder": boolean
+  "keepSectionOrder": boolean,
+  /** Git Integration - Display the current Git branch for files and folders in Git repositories */
+  "showGitBranch": boolean
 }
 
 /** Preferences accessible in all the extension's commands */

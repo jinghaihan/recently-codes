@@ -79,6 +79,11 @@
           "type": "boolean",
           "description": "Whether to open the recently codes in a new window.",
           "default": true
+        },
+        "crosside-recently-codes.showGitBranch": {
+          "type": "boolean",
+          "description": "Whether to show git branch in the recently codes.",
+          "default": false
         }
       }
     }
@@ -87,7 +92,9 @@
     "build": "tsdown",
     "dev": "pnpm build --watch --sourcemap",
     "generate": "vscode-ext-gen --output src/generated/meta.ts",
-    "package": "vsce package --no-dependencies && tsx ./scripts/after-package.ts",
+    "package": "pnpm before-package && vsce package --no-dependencies && pnpm after-package",
+    "before-package": "tsx ./scripts/before-package.ts",
+    "after-package": "tsx ./scripts/after-package.ts",
     "release": "vsxpub --no-dependencies",
     "prepare": "pnpm generate",
     "vscode:prepublish": "pnpm build"

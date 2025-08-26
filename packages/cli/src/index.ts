@@ -1,13 +1,17 @@
-import type { EditorName, EntryLike } from 'recently-codes'
+import type { EntryLike, SearchOptions } from 'recently-codes'
 import process from 'node:process'
 import { execFileAsync } from 'recently-codes'
 
 export * from './types'
 export { execFileAsync, hasSqlite3 } from 'recently-codes'
 
-export async function processCli(path: string, editors?: EditorName[]) {
+export async function processCli(path: string, options: SearchOptions = {}) {
+  const { codes, gitBranch = false } = options
   const args: string[] = [path]
-  editors?.forEach(i => args.push('--editor', `"${i}"`))
+  codes?.forEach(i => args.push('--codes', `"${i}"`))
+  if (gitBranch) {
+    args.push('--git-branch')
+  }
 
   let stdout: string
   try {

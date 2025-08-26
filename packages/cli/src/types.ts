@@ -1,5 +1,6 @@
 export type { EntryLike } from 'recently-codes'
 
 export interface CommandOptions {
-  editor?: string[]
+  codes?: string[]
+  gitBranch?: boolean
 }

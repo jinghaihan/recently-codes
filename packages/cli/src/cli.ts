@@ -10,12 +10,16 @@ try {
 
   cli
     .command('')
-    .option('--editor <editors...>', 'The editor to use')
+    .option('--codes <codes...>', 'The editor to use')
+    .option('--git-branch', 'Show git branch', { default: false })
     .action(async (options: CommandOptions) => {
-      if (options.editor && !Array.isArray(options.editor)) {
-        options.editor = [options.editor]
+      if (options.codes && !Array.isArray(options.codes)) {
+        options.codes = [options.codes]
       }
-      const RecentlyCodes = await getRecentlyCodes(options.editor)
+      const RecentlyCodes = await getRecentlyCodes({
+        codes: options.codes,
+        gitBranch: options.gitBranch,
+      })
       console.log(JSON.stringify(RecentlyCodes, null, 2))
     })
 

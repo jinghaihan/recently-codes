@@ -1,4 +1,4 @@
-import type { CodeName, EntryLike, HistoryResult } from './types'
+import type { CodeName, EntryLike, HistoryResult, SearchOptions } from './types'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { CODE_NAME_MAP } from './constants'
@@ -17,7 +17,9 @@ export async function getRecentlyCodesForIDE(codeName: CodeName): Promise<EntryL
   return handleRecentEntries(result)
 }
 
-export async function getRecentlyCodes(codes: string[] = []): Promise<EntryLike[]> {
+export async function getRecentlyCodes(options: SearchOptions): Promise<EntryLike[]> {
+  const { codes, gitBranch = false } = options
+
   const resolved = normalizeCodes(codes)
 
   const opened: Record<string, EntryLike[]> = {}
@@ -36,7 +38,10 @@ export async function getRecentlyCodes(codes: string[] = []): Promise<EntryLike[
       })
       .map(async (entry) => {
         const editors = getEntryEditors(entry, opened)
-        const branch = await getGitBranch(entry.uri)
+        let branch
+        if (gitBranch) {
+          branch = await getGitBranch(entry.uri)
+        }
         return { ...entry, editors, gitBranch: branch }
       }),
   )

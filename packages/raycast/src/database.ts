@@ -1,6 +1,7 @@
 import type { EntryLike } from 'recently-codes'
 import { useEffect, useState } from 'react'
 import { getRecentlyCodes } from 'recently-codes'
+import { preferences } from './preferences'
 
 export function useRecentlyCodes() {
   const [loading, setLoading] = useState(false)
@@ -8,7 +9,9 @@ export function useRecentlyCodes() {
 
   async function readRecentlyCodes() {
     setLoading(true)
-    const recentlyCodes = await getRecentlyCodes()
+    const recentlyCodes = await getRecentlyCodes({
+      gitBranch: preferences.showGitBranch,
+    })
     setRecentlyCodes(recentlyCodes)
     setLoading(false)
   }
