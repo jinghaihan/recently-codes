@@ -97,6 +97,18 @@ The extension can be configured through VS Code settings:
 }
 ```
 
+### `crosside-recently-codes.showGitBranch`
+- **Type**: Boolean
+- **Default**: `false`
+- **Description**: Show Git branch information for projects (disabled by default due to performance impact on Windows)
+
+**Example:**
+```json
+{
+  "crosside-recently-codes.showGitBranch": false
+}
+```
+
 ## How It Works
 
 Each VSCode-based editor stores its recent file history in SQLite databases. This extension:

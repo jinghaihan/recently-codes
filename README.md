@@ -49,6 +49,7 @@ The VSCode extension works with VSCode, Cursor, Windsurf, and other VSCode-compa
 **Configuration:**
 - `crosside-recently-codes.editors`: Array of editors to scan (default: `["vscode", "cursor", "windsurf"]`)
 - `crosside-recently-codes.openInNewWindow`: Open projects in new window (default: `true`)
+- `crosside-recently-codes.showGitBranch`: Show Git branch information for projects (default: `false`, disabled by default due to performance impact on Windows)
 
 ### Raycast Extension
 
@@ -80,6 +81,7 @@ This extension was inspired by the excellent [Visual Studio Code extension](http
 - Choose preferred editor to open projects
 - Customize view layout (list or grid)
 - Advanced section ordering options
+- Show Git branch information for projects (default: `true`)
 
 ### CLI Tool
 
@@ -97,7 +99,7 @@ pnpm add recently-codes-cli
 **Usage:**
 ```bash
 # List from specific editors
-recently-codes --editor cursor --editor vscode
+recently-codes --editor cursor --editor vscode --git-branch
 ```
 
 **Note:** The order of projects follows the SQL read order from each editor's history database. Since the history doesn't record opening timestamps, results are sorted by the editor's internal history array order.
@@ -106,10 +108,10 @@ recently-codes --editor cursor --editor vscode
 
 The project is structured as a monorepo with the following packages:
 
-- **`recently-codes`**: Core functionality for reading editor databases and processing recent files
-- **`recently-codes-cli`**: Command-line interface and process execution utilities
-- **`crosside-recently-codes`**: VSCode extension
-- **`raycast-crosside-recently-codes`**: Raycast extension
+- [`recently-codes`](packages/core/README.md): Core functionality for reading editor databases and processing recent files
+- [`recently-codes-cli`](packages/cli/README.md): Command-line interface and process execution utilities
+- [`vscode-crosside-recently-codes`](packages/vscode/README.md): VSCode extension
+- [`raycast-crosside-recently-codes`](packages/raycast/README.md): Raycast extension
 
 Each editor's recent file history is stored in SQLite databases. The core package handles reading these databases, deduplicating entries, checking file existence, and enriching data with Git branch information.
 
