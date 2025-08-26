@@ -1,0 +1,53 @@
+{
+  "name": "recently-codes-cli",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.15.0",
+  "description": "A CLI tool to list recent projects from VSCode and its forks like Cursor and Windsurf.",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/recently-codes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/recently-codes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/recently-codes/issues"
+  },
+  "keywords": [
+    "pnpm",
+    "pnpm-catalogs",
+    "pnpm-workspace",
+    "catalog",
+    "workspace"
+  ],
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./cli": "./dist/cli.mjs",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "bin": {
+    "recently-codes": "./bin/recently-codes.mjs"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsx ./src/cli.ts",
+    "build": "tsdown",
+    "release": "pnpm publish --no-git-checks",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "better-sqlite3": "catalog:database"
+  },
+  "dependencies": {
+    "cac": "catalog:node"
+  },
+  "devDependencies": {
+    "recently-codes": "workspace:*"
+  }
+}

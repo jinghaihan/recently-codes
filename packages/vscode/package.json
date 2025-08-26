@@ -1,0 +1,110 @@
+{
+  "publisher": "octohash",
+  "name": "crosside-recently-codes",
+  "displayName": "Crosside Recently Codes",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "description": "A VSCode extension for listing recent projects from VSCode and its forks like Cursor and Windsurf.",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/recently-codes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/recently-codes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/recently-codes/issues"
+  },
+  "keywords": [
+    "vscode",
+    "history",
+    "projects",
+    "recently-codes"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/index.js",
+  "icon": "res/icon.png",
+  "files": [
+    "LICENSE.md",
+    "dist/*",
+    "res/*"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "octohash.crosside-recently-codes.installDependencies",
+        "title": "Install Dependencies",
+        "category": "Recently Codes"
+      },
+      {
+        "command": "octohash.crosside-recently-codes.listRecentlyCodes",
+        "title": "List Recently Codes",
+        "category": "Recently Codes"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "crosside-recently-codes",
+      "properties": {
+        "crosside-recently-codes.editors": {
+          "type": "array",
+          "description": "The list of codes to list recent projects.",
+          "default": [
+            "vscode",
+            "cursor",
+            "windsurf"
+          ],
+          "items": {
+            "type": "string",
+            "enum": [
+              "vscode",
+              "vscode-insiders",
+              "vscodium",
+              "vscodium-insiders",
+              "cursor",
+              "windsurf"
+            ]
+          }
+        },
+        "crosside-recently-codes.openInNewWindow": {
+          "type": "boolean",
+          "description": "Whether to open the recently codes in a new window.",
+          "default": true
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "pnpm build --watch --sourcemap",
+    "generate": "vscode-ext-gen --output src/generated/meta.ts",
+    "package": "vsce package --no-dependencies",
+    "release": "vsxpub --no-dependencies",
+    "prepare": "pnpm generate",
+    "vscode:prepublish": "pnpm build"
+  },
+  "peerDependencies": {
+    "better-sqlite3": "catalog:database"
+  },
+  "dependencies": {
+    "recently-codes-cli": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "catalog:cli",
+    "ovsx": "catalog:cli",
+    "reactive-vscode": "catalog:vscode",
+    "typescript": "catalog:dev",
+    "vscode-ext-gen": "catalog:vscode",
+    "vsxpub": "catalog:cli"
+  }
+}

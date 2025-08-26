@@ -1,0 +1,48 @@
+{
+  "name": "recently-codes",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.15.0",
+  "description": "List recent projects from VSCode and its forks like Cursor and Windsurf.",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/recently-codes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/recently-codes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/recently-codes/issues"
+  },
+  "keywords": [
+    "vscode",
+    "cursor",
+    "windsurf",
+    "recent",
+    "history",
+    "projects"
+  ],
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsx ./src/index.ts",
+    "build": "tsdown",
+    "release": "pnpm publish --no-git-checks"
+  },
+  "peerDependencies": {
+    "better-sqlite3": "catalog:database"
+  },
+  "dependencies": {
+    "tildify": "catalog:utils"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "catalog:types"
+  }
+}

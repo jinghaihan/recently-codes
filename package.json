@@ -1,0 +1,66 @@
+{
+  "name": "recently-codes-monorepo",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.15.0",
+  "description": "List and open recent projects from VSCode and its forks like Cursor and Windsurf.",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/recently-codes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/recently-codes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/recently-codes/issues"
+  },
+  "keywords": [
+    "vscode",
+    "cursor",
+    "windsurf",
+    "recent",
+    "history",
+    "projects"
+  ],
+  "scripts": {
+    "dev:vscode": "pnpm --filter crosside-recently-codes dev",
+    "dev:raycast": "pnpm --filter raycast-crosside-recently-codes dev",
+    "build": "pnpm build:core && pnpm build:cli && pnpm build:vscode && pnpm build:raycast",
+    "build:prepare": "pnpm build:core && pnpm build:cli",
+    "build:core": "pnpm --filter recently-codes build",
+    "build:cli": "pnpm --filter recently-codes-cli build",
+    "build:vscode": "pnpm --filter crosside-recently-codes build",
+    "build:raycast": "pnpm --filter raycast-crosside-recently-codes build",
+    "package:vscode": "pnpm --filter crosside-recently-codes package",
+    "release": "bumpp -r && pnpm release:core && release release:cli",
+    "release:core": "pnpm --filter recently-codes release",
+    "release:cli": "pnpm --filter recently-codes-cli release",
+    "release:vscode": "pnpm --filter crosside-recently-codes release",
+    "release:raycast": "pnpm --filter raycast-crosside-recently-codes release",
+    "clean": "rm -rf node_modules && pnpm recursive exec -- rm -rf node_modules",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "lint": "eslint . && pnpm --filter raycast-crosside-recently-codes lint",
+    "lint:fix": "eslint . --fix && pnpm --filter raycast-crosside-recently-codes lint --fix",
+    "deps": "taze major -I",
+    "catalog": "pncat",
+    "prepare": "npx simple-git-hooks && pnpm build:prepare",
+    "bootstrap": "pnpm install",
+    "preinstall": "npx only-allow pnpm",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:lint",
+    "@types/node": "catalog:types",
+    "bumpp": "catalog:cli",
+    "eslint": "catalog:lint",
+    "lint-staged": "catalog:lint",
+    "pncat": "catalog:cli",
+    "simple-git-hooks": "catalog:lint",
+    "taze": "catalog:cli",
+    "tsdown": "catalog:build",
+    "tsx": "catalog:script",
+    "typescript": "catalog:dev",
+    "unbuild": "catalog:build",
+    "vitest": "catalog:test"
+  }
+}

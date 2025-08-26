@@ -1,0 +1,116 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "raycast-crosside-recently-codes",
+  "title": "Crosside Recently Codes",
+  "description": "A Raycast extension for listing recent projects from VSCode and its forks like Cursor and Windsurf.",
+  "author": "jinghaihan",
+  "license": "MIT",
+  "homepage": "https://github.com/jinghaihan/recently-codes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinghaihan/recently-codes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinghaihan/recently-codes/issues"
+  },
+  "keywords": [
+    "vscode",
+    "history",
+    "projects",
+    "recently-codes"
+  ],
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "index",
+      "title": "List Crosside Recently Codes",
+      "subtitle": "Crosside Recently Codes",
+      "description": "List recent projects from VSCode and its forks like Cursor and Windsurf.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "editor",
+      "title": "Editor",
+      "type": "dropdown",
+      "required": false,
+      "default": "vscode",
+      "description": "Open which build of Visual Studio Code to open when select a project.",
+      "data": [
+        {
+          "title": "VSCode",
+          "value": "vscode"
+        },
+        {
+          "title": "VSCode - Insiders",
+          "value": "vscode-insiders"
+        },
+        {
+          "title": "VSCodium",
+          "value": "vscodium"
+        },
+        {
+          "title": "VSCodium - Insiders",
+          "value": "vscodium-insiders"
+        },
+        {
+          "title": "Cursor",
+          "value": "cursor"
+        },
+        {
+          "title": "Windsurf",
+          "value": "windsurf"
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "title": "View Layout",
+      "type": "dropdown",
+      "required": false,
+      "default": "list",
+      "description": "Select the layout of the view",
+      "data": [
+        {
+          "value": "list",
+          "title": "List"
+        },
+        {
+          "value": "grid",
+          "title": "Grid"
+        }
+      ]
+    },
+    {
+      "name": "keepSectionOrder",
+      "type": "checkbox",
+      "title": "Advanced",
+      "required": false,
+      "label": "Keep Section Order",
+      "default": false,
+      "description": "Keep the order of the sections while searching folders, files, etc."
+    }
+  ],
+  "scripts": {
+    "dev": "ray develop",
+    "build": "ray build -e dist",
+    "lint": "eslint .",
+    "release": "npx @raycast/api@latest publish"
+  },
+  "platforms": [
+    "macOS"
+  ],
+  "dependencies": {
+    "@raycast/api": "catalog:raycast",
+    "@raycast/utils": "catalog:raycast",
+    "lru-cache": "catalog:utils",
+    "recently-codes": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:types",
+    "eslint": "catalog:lint",
+    "react": "catalog:frontend",
+    "typescript": "catalog:dev"
+  }
+}
