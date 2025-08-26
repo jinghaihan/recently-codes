@@ -34,7 +34,8 @@
   "scripts": {
     "start": "tsx ./src/index.ts",
     "build": "tsdown",
-    "release": "pnpm publish --no-git-checks"
+    "release": "pnpm publish --no-git-checks",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "better-sqlite3": "catalog:database"

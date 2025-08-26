@@ -1,6 +1,7 @@
 import { defineConfig, mergeCatalogRules } from 'pncat'
 
 export default defineConfig({
+  ignorePaths: ['packages/vscode'],
   exclude: ['@types/vscode'],
   catalogRules: mergeCatalogRules([
     {

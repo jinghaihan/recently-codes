@@ -31,7 +31,7 @@
     "build:vscode": "pnpm --filter crosside-recently-codes build",
     "build:raycast": "pnpm --filter raycast-crosside-recently-codes build",
     "package:vscode": "pnpm --filter crosside-recently-codes package",
-    "release": "bumpp -r && pnpm release:core && release release:cli",
+    "release": "bumpp -r && pnpm release:core && pnpm release:cli",
     "release:core": "pnpm --filter recently-codes release",
     "release:cli": "pnpm --filter recently-codes-cli release",
     "release:vscode": "pnpm --filter crosside-recently-codes release",

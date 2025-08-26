@@ -93,18 +93,18 @@
     "vscode:prepublish": "pnpm build"
   },
   "peerDependencies": {
-    "better-sqlite3": "catalog:database"
+    "better-sqlite3": "^12.2.0"
   },
   "dependencies": {
     "recently-codes-cli": "workspace:*"
   },
   "devDependencies": {
     "@types/vscode": "^1.90.0",
-    "@vscode/vsce": "catalog:cli",
-    "ovsx": "catalog:cli",
-    "reactive-vscode": "catalog:vscode",
-    "typescript": "catalog:dev",
-    "vscode-ext-gen": "catalog:vscode",
-    "vsxpub": "catalog:cli"
+    "@vscode/vsce": "^3.6.0",
+    "ovsx": "^0.10.5",
+    "reactive-vscode": "^0.3.1",
+    "typescript": "^5.9.2",
+    "vscode-ext-gen": "^1.1.0",
+    "vsxpub": "^0.1.1"
   }
 }

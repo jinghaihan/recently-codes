@@ -5,12 +5,9 @@ catalogs:
     tsdown: ^0.14.1
     unbuild: ^3.6.1
   cli:
-    '@vscode/vsce': ^3.6.0
     bumpp: ^10.2.3
-    ovsx: ^0.10.5
     pncat: ^0.5.0
     taze: ^19.3.0
-    vsxpub: ^0.1.1
   database:
     better-sqlite3: ^12.2.0
   dev:
@@ -38,9 +35,6 @@ catalogs:
   utils:
     lru-cache: ^11.1.0
     tildify: ^3.0.0
-  vscode:
-    reactive-vscode: ^0.3.1
-    vscode-ext-gen: ^1.1.0
 onlyBuiltDependencies:
   - better-sqlite3
   - '@reactive-codes/core'

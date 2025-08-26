@@ -13,24 +13,15 @@ catalogs:
       specifier: ^3.6.1
       version: 3.6.1
   cli:
-    '@vscode/vsce':
-      specifier: ^3.6.0
-      version: 3.6.0
     bumpp:
       specifier: ^10.2.3
       version: 10.2.3
-    ovsx:
-      specifier: ^0.10.5
-      version: 0.10.5
     pncat:
       specifier: ^0.5.0
       version: 0.5.0
     taze:
       specifier: ^19.3.0
       version: 19.3.0
-    vsxpub:
-      specifier: ^0.1.1
-      version: 0.1.1
   database:
     better-sqlite3:
       specifier: ^12.2.0
@@ -92,13 +83,6 @@ catalogs:
     tildify:
       specifier: ^3.0.0
       version: 3.0.0
-  vscode:
-    reactive-vscode:
-      specifier: ^0.3.1
-      version: 0.3.1
-    vscode-ext-gen:
-      specifier: ^1.1.0
-      version: 1.1.0
 
 importers:
 
@@ -201,7 +185,7 @@ importers:
   packages/vscode:
     dependencies:
       better-sqlite3:
-        specifier: catalog:database
+        specifier: ^12.2.0
         version: 12.2.0
       recently-codes-cli:
         specifier: workspace:*
@@ -211,22 +195,22 @@ importers:
         specifier: ^1.90.0
         version: 1.103.0
       '@vscode/vsce':
-        specifier: catalog:cli
+        specifier: ^3.6.0
         version: 3.6.0
       ovsx:
-        specifier: catalog:cli
+        specifier: ^0.10.5
         version: 0.10.5
       reactive-vscode:
-        specifier: catalog:vscode
+        specifier: ^0.3.1
         version: 0.3.1(@types/vscode@1.103.0)
       typescript:
-        specifier: catalog:dev
+        specifier: ^5.9.2
         version: 5.9.2
       vscode-ext-gen:
-        specifier: catalog:vscode
+        specifier: ^1.1.0
         version: 1.1.0
       vsxpub:
-        specifier: catalog:cli
+        specifier: ^0.1.1
         version: 0.1.1
 
 packages:
