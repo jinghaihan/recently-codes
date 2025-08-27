@@ -1,6 +1,6 @@
-import type { ExtensionContext } from 'vscode'
+import type { ExtensionContext, QuickPickItem } from 'vscode'
 import { defineExtension, useCommand } from 'reactive-vscode'
-import { commands, ThemeIcon, Uri, window } from 'vscode'
+import { commands, QuickPickItemKind, ThemeIcon, Uri, window } from 'vscode'
 import { config } from './config'
 import { CLI_PATH } from './constants'
 import { ensureDeps, logger } from './utils'
@@ -28,21 +28,22 @@ const { activate, deactivate } = defineExtension(async (ctx: ExtensionContext) =
       const iconPathFolder = new ThemeIcon('folder')
       const iconPathFile = new ThemeIcon('file')
 
-      const items = recentlyCodes.map((entry) => {
-        const editorsInfo = `Recently opened in: ${entry.editors.join(', ')}`
-        const branchInfoLine = entry.gitBranch ? `(Branch: ${entry.gitBranch})` : ''
-        const detailParts = [editorsInfo]
-        if (branchInfoLine) {
-          detailParts.push(branchInfoLine)
+      const items: (QuickPickItem & { path?: string })[] = []
+      recentlyCodes.forEach((entry) => {
+        if (entry.gitBranch) {
+          items.push({
+            kind: QuickPickItemKind.Separator,
+            label: entry.gitBranch ?? '',
+          })
         }
 
-        return {
+        items.push({
           label: entry.name,
           description: entry.path,
-          detail: detailParts.join(' '),
+          detail: `Recently opened in: ${entry.editors.join(', ')}`,
           iconPath: entry.type === 'folder' ? iconPathFolder : iconPathFile,
           path: entry.uri,
-        }
+        })
       })
 
       const selected = await window.showQuickPick(items, {
@@ -51,7 +52,7 @@ const { activate, deactivate } = defineExtension(async (ctx: ExtensionContext) =
         matchOnDetail: true,
       })
 
-      if (selected) {
+      if (selected && selected.path) {
         const uri = Uri.parse(selected.path)
         await commands.executeCommand('vscode.openFolder', uri, config.openInNewWindow)
       }
