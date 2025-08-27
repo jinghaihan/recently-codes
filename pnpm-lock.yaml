@@ -7,8 +7,8 @@ settings:
 catalogs:
   build:
     tsdown:
-      specifier: ^0.14.1
-      version: 0.14.1
+      specifier: ^0.14.2
+      version: 0.14.2
     unbuild:
       specifier: ^3.6.1
       version: 3.6.1
@@ -53,8 +53,8 @@ catalogs:
       version: 6.7.14
   raycast:
     '@raycast/api':
-      specifier: ^1.102.5
-      version: 1.102.5
+      specifier: ^1.102.6
+      version: 1.102.6
     '@raycast/utils':
       specifier: ^2.2.1
       version: 2.2.1
@@ -114,7 +114,7 @@ importers:
         version: 19.3.0
       tsdown:
         specifier: catalog:build
-        version: 0.14.1(typescript@5.9.2)
+        version: 0.14.2(typescript@5.9.2)
       tsx:
         specifier: catalog:script
         version: 4.20.5
@@ -158,10 +158,10 @@ importers:
     dependencies:
       '@raycast/api':
         specifier: catalog:raycast
-        version: 1.102.5(@types/node@24.3.0)(@types/react@19.1.11)
+        version: 1.102.6(@types/node@24.3.0)(@types/react@19.1.11)
       '@raycast/utils':
         specifier: catalog:raycast
-        version: 2.2.1(@raycast/api@1.102.5(@types/node@24.3.0)(@types/react@19.1.11))(react@19.1.1)
+        version: 2.2.1(@raycast/api@1.102.6(@types/node@24.3.0)(@types/react@19.1.11))(react@19.1.1)
       lru-cache:
         specifier: catalog:utils
         version: 11.1.0
@@ -932,8 +932,8 @@ packages:
   '@quansync/fs@0.1.5':
     resolution: {integrity: sha512-lNS9hL2aS2NZgNW7BBj+6EBl4rOf8l+tQ0eRY6JWCI8jI2kc53gSoqbjojU0OnAWhzoXiOjFyGsHcDGePB3lhA==}
 
-  '@raycast/api@1.102.5':
-    resolution: {integrity: sha512-Jqm29vjZ6npLJEj5Rzbya58hmtOZYfujVy+kTsgcSjpIooF6AWO1lWgR1ei67pyNdjHaT8uqTOYgX8bthaydIQ==}
+  '@raycast/api@1.102.6':
+    resolution: {integrity: sha512-P6j4nSOJe8wlsaf8gU/fsEnB4/oO8AXywcX3NiVQGiG9PWb/OyCCWQA8SFNdARsYyzNsJRlR+XRfMVzCBNv8Rw==}
     engines: {node: '>=22.14.0'}
     hasBin: true
     peerDependencies:
@@ -3703,8 +3703,8 @@ packages:
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
-  rolldown-plugin-dts@0.15.7:
-    resolution: {integrity: sha512-BpdrnLaa+uyw0rPT47+4FUC7hQFazBFppeFT0ioW5Ybg0XCLeRohc3HHPlnCxI6LtzgSWT7Ot8ahn6ji10IQBg==}
+  rolldown-plugin-dts@0.15.10:
+    resolution: {integrity: sha512-8cPVAVQUo9tYAoEpc3jFV9RxSil13hrRRg8cHC9gLXxRMNtWPc1LNMSDXzjyD+5Vny49sDZH77JlXp/vlc4I3g==}
     engines: {node: '>=20.18.0'}
     peerDependencies:
       '@typescript/native-preview': '>=7.0.0-dev.20250601.1'
@@ -4036,8 +4036,8 @@ packages:
   ts-pattern@5.8.0:
     resolution: {integrity: sha512-kIjN2qmWiHnhgr5DAkAafF9fwb0T5OhMVSWrm8XEdTFnX6+wfXwYOFjeF86UZ54vduqiR7BfqScFmXSzSaH8oA==}
 
-  tsdown@0.14.1:
-    resolution: {integrity: sha512-/nBuFDKZeYln9hAxwWG5Cm55/823sNIVI693iVi0xRFHzf9OVUq4b/lx9PH1TErFr/IQ0kd2hutFbJIPM0XQWA==}
+  tsdown@0.14.2:
+    resolution: {integrity: sha512-6ThtxVZoTlR5YJov5rYvH8N1+/S/rD/pGfehdCLGznGgbxz+73EASV1tsIIZkLw2n+SXcERqHhcB/OkyxdKv3A==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     peerDependencies:
@@ -5147,7 +5147,7 @@ snapshots:
     dependencies:
       quansync: 0.2.11
 
-  '@raycast/api@1.102.5(@types/node@24.3.0)(@types/react@19.1.11)':
+  '@raycast/api@1.102.6(@types/node@24.3.0)(@types/react@19.1.11)':
     dependencies:
       '@oclif/core': 4.5.2
       '@oclif/plugin-autocomplete': 3.2.34
@@ -5161,9 +5161,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@raycast/utils@2.2.1(@raycast/api@1.102.5(@types/node@24.3.0)(@types/react@19.1.11))(react@19.1.1)':
+  '@raycast/utils@2.2.1(@raycast/api@1.102.6(@types/node@24.3.0)(@types/react@19.1.11))(react@19.1.1)':
     dependencies:
-      '@raycast/api': 1.102.5(@types/node@24.3.0)(@types/react@19.1.11)
+      '@raycast/api': 1.102.6(@types/node@24.3.0)(@types/react@19.1.11)
       dequal: 2.0.3
     optionalDependencies:
       react: 19.1.1
@@ -8276,7 +8276,7 @@ snapshots:
 
   rfdc@1.4.1: {}
 
-  rolldown-plugin-dts@0.15.7(rolldown@1.0.0-beta.34)(typescript@5.9.2):
+  rolldown-plugin-dts@0.15.10(rolldown@1.0.0-beta.34)(typescript@5.9.2):
     dependencies:
       '@babel/generator': 7.28.3
       '@babel/parser': 7.28.3
@@ -8664,7 +8664,7 @@ snapshots:
   ts-pattern@5.8.0:
     optional: true
 
-  tsdown@0.14.1(typescript@5.9.2):
+  tsdown@0.14.2(typescript@5.9.2):
     dependencies:
       ansis: 4.1.0
       cac: 6.7.14
@@ -8674,7 +8674,7 @@ snapshots:
       empathic: 2.0.0
       hookable: 5.5.3
       rolldown: 1.0.0-beta.34
-      rolldown-plugin-dts: 0.15.7(rolldown@1.0.0-beta.34)(typescript@5.9.2)
+      rolldown-plugin-dts: 0.15.10(rolldown@1.0.0-beta.34)(typescript@5.9.2)
       semver: 7.7.2
       tinyexec: 1.0.1
       tinyglobby: 0.2.14

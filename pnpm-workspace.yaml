@@ -2,7 +2,7 @@ packages:
   - 'packages/*'
 catalogs:
   build:
-    tsdown: ^0.14.1
+    tsdown: ^0.14.2
     unbuild: ^3.6.1
   cli:
     bumpp: ^10.2.3
@@ -22,7 +22,7 @@ catalogs:
   node:
     cac: ^6.7.14
   raycast:
-    '@raycast/api': ^1.102.5
+    '@raycast/api': ^1.102.6
     '@raycast/utils': ^2.2.1
   script:
     tsx: ^4.20.5

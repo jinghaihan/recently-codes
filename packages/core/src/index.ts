@@ -7,6 +7,8 @@ import { getGitBranch } from './git'
 import { getEntryEditors, handleRecentEntries, normalizeCodes } from './utils'
 
 export * from './constants'
+export * from './database'
+export * from './git'
 export * from './types'
 export * from './utils'
 

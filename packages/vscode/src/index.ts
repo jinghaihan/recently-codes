@@ -33,7 +33,7 @@ const { activate, deactivate } = defineExtension(async (ctx: ExtensionContext) =
         if (entry.gitBranch) {
           items.push({
             kind: QuickPickItemKind.Separator,
-            label: entry.gitBranch ?? '',
+            label: entry.gitBranch,
           })
         }
 
