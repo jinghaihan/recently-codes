@@ -1,4 +1,6 @@
+import type { Application } from '@raycast/api'
 import type { EntryLike } from 'recently-codes'
+import type { PinMethods } from './types'
 import { fileURLToPath } from 'node:url'
 import { Action, ActionPanel, Grid, Icon, open, openExtensionPreferences, showToast, Toast } from '@raycast/api'
 import { usePromise } from '@raycast/utils'
@@ -8,13 +10,16 @@ import { stringToColor } from './color'
 import { useRecentlyCodes } from './database'
 import { getBundleId, getEditorApplication } from './editor'
 import { Layout, LayoutDropdown, LayoutDropdownItem, LayoutDropdownSection, LayoutItem, LayoutSection } from './layout'
+import { usePinnedEntries } from './pinned'
+import { PinActionSection } from './pinned-action-section'
 import { preferences } from './preferences'
 import { EntryType } from './types'
-import { filterEntriesByType } from './utils'
+import { filterEntriesByType, filterUnpinnedEntries } from './utils'
 
 export default function Command() {
   const { recentlyCodes, loading } = useRecentlyCodes()
   const [type, setType] = useState<EntryType | null>(null)
+  const { pinnedEntries, ...pinnedMethods } = usePinnedEntries()
 
   const fetchEditorApp = useCallback(async () => {
     return getEditorApplication(preferences.editor)
@@ -31,18 +36,24 @@ export default function Command() {
       filtering={{ keepSectionOrder: preferences.keepSectionOrder }}
       searchBarAccessory={<EntryTypeDropdown onChange={setType} />}
     >
+      <LayoutSection title="Pinned Projects">
+        {pinnedEntries.filter(filterEntriesByType(type)).map((entry: EntryLike) => (
+          <EntryItem key={entry.uri} entry={entry} pinned={true} {...pinnedMethods} />
+        ))}
+      </LayoutSection>
       <LayoutSection title="Recent Projects">
         {recentlyCodes
+          .filter(filterUnpinnedEntries(pinnedEntries))
           .filter(filterEntriesByType(type))
           .map((entry: EntryLike) => (
-            <EntryItem key={entry.uri} entry={entry} editorApp={editorApp} />
+            <EntryItem key={entry.uri} entry={entry} editorApp={editorApp} {...pinnedMethods} />
           ))}
       </LayoutSection>
     </Layout>
   )
 }
 
-function EntryItem(props: { entry: EntryLike, editorApp?: any }) {
+function EntryItem(props: { entry: EntryLike, editorApp?: Application, pinned?: boolean } & PinMethods) {
   const title = `Open in ${APPLICATION_NAME_MAP[preferences.editor] ?? preferences.editor}`
   const name = props.entry.name
   const filePath = fileURLToPath(props.entry.uri)
@@ -110,6 +121,7 @@ function EntryItem(props: { entry: EntryLike, editorApp?: any }) {
             icon={Icon.Gear}
             onAction={openExtensionPreferences}
           />
+          <PinActionSection {...props} />
         </ActionPanel>
       )}
     >

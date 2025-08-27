@@ -1,5 +1,6 @@
 import type { EntryLike } from 'recently-codes'
 import type { EntryType } from './types'
+import { isDeepStrictEqual } from 'node:util'
 
 export function filterEntriesByType(filter: EntryType | null) {
   switch (filter) {
@@ -12,4 +13,8 @@ export function filterEntriesByType(filter: EntryType | null) {
     default:
       return (_: EntryLike) => false
   }
+}
+
+export function filterUnpinnedEntries(pinnedEntries: EntryLike[]) {
+  return (entry: EntryLike) => pinnedEntries.find(pinnedEntry => isDeepStrictEqual(pinnedEntry, entry)) === undefined
 }

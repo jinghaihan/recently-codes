@@ -1,10 +1,23 @@
 import type { Grid, List } from '@raycast/api'
+import type { EntryLike } from 'recently-codes'
+
+export type PinnedMovement = 'up' | 'right' | 'down' | 'left'
+
+export interface PinMethods {
+  pin: (entry: EntryLike) => void
+  moveUp: (entry: EntryLike) => void
+  moveDown: (entry: EntryLike) => void
+  unpin: (entry: EntryLike) => void
+  unpinAll: () => void
+  getAllowedMovements: (entry: EntryLike) => PinnedMovement[]
+}
 
 export enum EntryType {
   Folders = 'Folders',
   Files = 'Files',
   AllTypes = 'All Types',
 }
+
 export type ListType = 'list'
 export type GridType = 'grid'
 
