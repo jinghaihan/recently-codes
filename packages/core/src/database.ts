@@ -1,12 +1,9 @@
 import type { CodeName } from './types'
-import { READ_HISTORY_SQL } from './constants'
+import { READ_HISTORY_SQL, UPDATE_HISTORY_SQL } from './constants'
 import { execFileAsync, findDatabasePath, hasSqlite3 } from './utils'
 
 export async function readDatabaseWithSystemSqlite3<T>(dbPath: string): Promise<T | undefined> {
-  const { stdout } = await execFileAsync('sqlite3', [
-    dbPath,
-    READ_HISTORY_SQL,
-  ])
+  const { stdout } = await execFileAsync('sqlite3', [dbPath, READ_HISTORY_SQL])
 
   const result = stdout.trim()
   if (!result)
@@ -44,5 +41,40 @@ export async function readDatabase<T>(codeName: CodeName): Promise<T | undefined
   }
   else {
     return await readDatabaseWithBetterSqlite3<T>(dbPath)
+  }
+}
+
+export async function writeDatabaseWithSystemSqlite3<T>(dbPath: string, data: T): Promise<void> {
+  const jsonData = JSON.stringify(data)
+  const sql = `${UPDATE_HISTORY_SQL.replace('?', `'${jsonData.replace(/'/g, '\'\'')}'`)}`
+  await execFileAsync('sqlite3', [dbPath, sql])
+}
+
+export async function writeDatabaseWithBetterSqlite3<T>(dbPath: string, data: T): Promise<void> {
+  const Database = (await import('better-sqlite3')).default
+  const db = new Database(dbPath)
+  try {
+    const stmt = db.prepare(UPDATE_HISTORY_SQL)
+    stmt.run(JSON.stringify(data))
+  }
+  catch {
+    // ignore error
+  }
+  finally {
+    db.close()
+  }
+}
+
+export async function writeDatabase<T>(codeName: CodeName, data: T): Promise<void> {
+  const dbPath = await findDatabasePath(codeName)
+  if (!dbPath) {
+    return
+  }
+
+  if (await hasSqlite3()) {
+    await writeDatabaseWithSystemSqlite3<T>(dbPath, data)
+  }
+  else {
+    await writeDatabaseWithBetterSqlite3<T>(dbPath, data)
   }
 }

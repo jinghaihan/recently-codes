@@ -1,4 +1,4 @@
-import type { EntryLike } from 'recently-codes'
+import type { EntryItem } from 'recently-codes'
 import type { PinnedMovement } from './types'
 import { isDeepStrictEqual } from 'node:util'
 import { useCachedState } from '@raycast/utils'
@@ -6,11 +6,11 @@ import { preferences } from './preferences'
 
 const GRID_COLUMNS = 6
 
-function getAllowedMovements(entries: EntryLike[], entry: EntryLike): PinnedMovement[] {
+function getAllowedMovements(entries: EntryItem[], entry: EntryItem): PinnedMovement[] {
   const movements = new Array<PinnedMovement>()
 
   if (preferences.layout === 'grid') {
-    const index = entries.findIndex((e: EntryLike) => isDeepStrictEqual(e, entry))
+    const index = entries.findIndex((e: EntryItem) => isDeepStrictEqual(e, entry))
 
     if (index >= GRID_COLUMNS && index % GRID_COLUMNS === 0) {
       movements.push('up')
@@ -29,7 +29,7 @@ function getAllowedMovements(entries: EntryLike[], entry: EntryLike): PinnedMove
     }
   }
   else {
-    const index = entries.findIndex((e: EntryLike) => isDeepStrictEqual(e, entry))
+    const index = entries.findIndex((e: EntryItem) => isDeepStrictEqual(e, entry))
 
     if (index !== entries.length - 1) {
       movements.push('down')
@@ -44,26 +44,26 @@ function getAllowedMovements(entries: EntryLike[], entry: EntryLike): PinnedMove
 }
 
 export function usePinnedEntries() {
-  const [entries, setEntries] = useCachedState<EntryLike[]>('pinned', [])
+  const [entries, setEntries] = useCachedState<EntryItem[]>('pinned', [])
   return {
     pinnedEntries: entries,
-    pin: (entry: EntryLike) =>
+    pin: (entry: EntryItem) =>
       setEntries(previousEntries => [entry, ...previousEntries.filter(e => !isDeepStrictEqual(e, entry))]),
-    unpin: (entry: EntryLike) =>
+    unpin: (entry: EntryItem) =>
       setEntries(previousEntries => previousEntries.filter(e => !isDeepStrictEqual(e, entry))),
     unpinAll: () => setEntries([]),
-    moveUp: (entry: EntryLike) =>
+    moveUp: (entry: EntryItem) =>
       setEntries((previousEntries) => {
         const i = previousEntries.findIndex(e => isDeepStrictEqual(e, entry))
         previousEntries.splice(i - 1, 2, previousEntries[i], previousEntries[i - 1])
         return previousEntries
       }),
-    moveDown: (entry: EntryLike) =>
+    moveDown: (entry: EntryItem) =>
       setEntries((previousEntries) => {
         const i = previousEntries.findIndex(e => isDeepStrictEqual(e, entry))
         previousEntries.splice(i, 2, previousEntries[i + 1], previousEntries[i])
         return previousEntries
       }),
-    getAllowedMovements: (entry: EntryLike) => getAllowedMovements(entries, entry),
+    getAllowedMovements: (entry: EntryItem) => getAllowedMovements(entries, entry),
   }
 }

@@ -1,6 +1,6 @@
 import type { Application } from '@raycast/api'
-import type { EntryLike } from 'recently-codes'
-import type { PinMethods } from './types'
+import type { EntryItem } from 'recently-codes'
+import type { PinMethods, RemoveMethods } from './types'
 import { fileURLToPath } from 'node:url'
 import { Action, ActionPanel, Grid, Icon, open, openExtensionPreferences, showToast, Toast } from '@raycast/api'
 import { usePromise } from '@raycast/utils'
@@ -11,13 +11,14 @@ import { useRecentlyCodes } from './database'
 import { getBundleId, getEditorApplication } from './editor'
 import { Layout, LayoutDropdown, LayoutDropdownItem, LayoutDropdownSection, LayoutItem, LayoutSection } from './layout'
 import { usePinnedEntries } from './pinned'
-import { PinActionSection } from './pinned-action-section'
 import { preferences } from './preferences'
+import { PinActionSection } from './sections/pinned'
+import { RemoveActionSection } from './sections/remove'
 import { EntryType } from './types'
 import { filterEntriesByType, filterUnpinnedEntries } from './utils'
 
 export default function Command() {
-  const { recentlyCodes, loading } = useRecentlyCodes()
+  const { loading, recentlyCodes, ...removeMethods } = useRecentlyCodes()
   const [type, setType] = useState<EntryType | null>(null)
   const { pinnedEntries, ...pinnedMethods } = usePinnedEntries()
 
@@ -37,23 +38,23 @@ export default function Command() {
       searchBarAccessory={<EntryTypeDropdown onChange={setType} />}
     >
       <LayoutSection title="Pinned Projects">
-        {pinnedEntries.filter(filterEntriesByType(type)).map((entry: EntryLike) => (
-          <EntryItem key={entry.uri} entry={entry} pinned={true} {...pinnedMethods} />
+        {pinnedEntries.filter(filterEntriesByType(type)).map((entry: EntryItem) => (
+          <ListItem key={entry.uri} entry={entry} pinned={true} {...pinnedMethods} {...removeMethods} />
         ))}
       </LayoutSection>
       <LayoutSection title="Recent Projects">
         {recentlyCodes
           .filter(filterUnpinnedEntries(pinnedEntries))
           .filter(filterEntriesByType(type))
-          .map((entry: EntryLike) => (
-            <EntryItem key={entry.uri} entry={entry} editorApp={editorApp} {...pinnedMethods} />
+          .map((entry: EntryItem) => (
+            <ListItem key={entry.uri} entry={entry} editorApp={editorApp} {...pinnedMethods} {...removeMethods} />
           ))}
       </LayoutSection>
     </Layout>
   )
 }
 
-function EntryItem(props: { entry: EntryLike, editorApp?: Application, pinned?: boolean } & PinMethods) {
+function ListItem(props: { entry: EntryItem, editorApp?: Application, pinned?: boolean } & PinMethods & RemoveMethods) {
   const title = `Open in ${APPLICATION_NAME_MAP[preferences.editor] ?? preferences.editor}`
   const name = props.entry.name
   const filePath = fileURLToPath(props.entry.uri)
@@ -116,12 +117,13 @@ function EntryItem(props: { entry: EntryLike, editorApp?: Application, pinned?: 
               shortcut={{ modifiers: ['cmd', 'shift'], key: '.' }}
             />
           </ActionPanel.Section>
+          <PinActionSection {...props} />
+          <RemoveActionSection {...props} />
           <Action
             title="Open Preferences"
             icon={Icon.Gear}
             onAction={openExtensionPreferences}
           />
-          <PinActionSection {...props} />
         </ActionPanel>
       )}
     >

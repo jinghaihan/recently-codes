@@ -8,6 +8,11 @@ export interface SearchOptions {
   gitBranch?: boolean
 }
 
+export interface UpdateOptions {
+  editors?: string[]
+  entries: EntryItem[]
+}
+
 export interface HistoryResult {
   entries: HistoryEntry[]
 }
@@ -17,7 +22,7 @@ export interface HistoryEntry {
   fileUri?: string
 }
 
-export interface EntryLike {
+export interface EntryItem {
   name: string
   uri: string
   path: string

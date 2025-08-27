@@ -1,4 +1,4 @@
-import type { CodeName, EditorName, EntryLike, HistoryResult } from './types'
+import type { CodeName, EditorName, EntryItem, HistoryResult } from './types'
 import { execFile } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { homedir, platform } from 'node:os'
@@ -58,7 +58,7 @@ export function normalizeCodes(codes?: string[]): CodeName[] {
   return filtered
 }
 
-export function parseHistoryEntry(list: string[], type: 'folder' | 'file'): EntryLike[] {
+export function parseHistoryEntry(list: string[], type: 'folder' | 'file'): EntryItem[] {
   return list.map((i) => {
     const path = fileURLToPath(i)
     const pathName = new URL(i).pathname
@@ -73,7 +73,7 @@ export function parseHistoryEntry(list: string[], type: 'folder' | 'file'): Entr
   })
 }
 
-export function getEntryEditors(entry: EntryLike, entriesMap: Record<EditorName, EntryLike[]>): EditorName[] {
+export function getEntryEditors(entry: EntryItem, entriesMap: Record<EditorName, EntryItem[]>): EditorName[] {
   const editors = Object.entries(entriesMap)
     .filter(([_, entries]) => entries.find(i => i.uri === entry.uri))
     .map(([editor, _]) => editor)
@@ -91,7 +91,7 @@ export function handleRecentEntries(result: HistoryResult) {
       return false
     })
     .filter(Boolean)
-    .flat() as EntryLike[]
+    .flat() as EntryItem[]
 }
 
 export async function hasSqlite3(): Promise<boolean> {

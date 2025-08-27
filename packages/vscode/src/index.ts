@@ -30,12 +30,10 @@ const { activate, deactivate } = defineExtension(async (ctx: ExtensionContext) =
 
       const items: (QuickPickItem & { path?: string })[] = []
       recentlyCodes.forEach((entry) => {
-        if (entry.gitBranch) {
-          items.push({
-            kind: QuickPickItemKind.Separator,
-            label: entry.gitBranch,
-          })
-        }
+        items.push({
+          kind: QuickPickItemKind.Separator,
+          label: entry.gitBranch ?? '',
+        })
 
         items.push({
           label: entry.name,

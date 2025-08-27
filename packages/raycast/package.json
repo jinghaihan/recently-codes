@@ -26,7 +26,7 @@
   "commands": [
     {
       "name": "index",
-      "title": "List Crosside Recently Codes",
+      "title": "Search Recent Projects",
       "subtitle": "Crosside Recently Codes",
       "description": "List recent projects from VSCode and its forks like Cursor and Windsurf.",
       "mode": "view"

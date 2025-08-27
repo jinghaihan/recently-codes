@@ -1,15 +1,20 @@
 import type { Grid, List } from '@raycast/api'
-import type { EntryLike } from 'recently-codes'
+import type { EntryItem } from 'recently-codes'
 
 export type PinnedMovement = 'up' | 'right' | 'down' | 'left'
 
 export interface PinMethods {
-  pin: (entry: EntryLike) => void
-  moveUp: (entry: EntryLike) => void
-  moveDown: (entry: EntryLike) => void
-  unpin: (entry: EntryLike) => void
+  pin: (entry: EntryItem) => void
+  moveUp: (entry: EntryItem) => void
+  moveDown: (entry: EntryItem) => void
+  unpin: (entry: EntryItem) => void
   unpinAll: () => void
-  getAllowedMovements: (entry: EntryLike) => PinnedMovement[]
+  getAllowedMovements: (entry: EntryItem) => PinnedMovement[]
+}
+
+export interface RemoveMethods {
+  removeEntry: (entry: EntryItem) => Promise<void>
+  removeAllEntries: () => Promise<void>
 }
 
 export enum EntryType {

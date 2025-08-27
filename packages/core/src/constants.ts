@@ -1,6 +1,6 @@
 export const READ_HISTORY_SQL = 'SELECT value FROM ItemTable WHERE key = \'history.recentlyOpenedPathsList\''
 
-export const UPDATE_HISTORY_SQL = (data: string) => `INSERT INTO ItemTable (key, value) VALUES ('history.recentlyOpenedPathsList', '${data}');`
+export const UPDATE_HISTORY_SQL = 'INSERT OR REPLACE INTO ItemTable (key, value) VALUES (\'history.recentlyOpenedPathsList\', ?)'
 
 export const CODE_NAME_CHOICES = [
   'Code',

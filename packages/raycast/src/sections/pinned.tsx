@@ -1,8 +1,8 @@
-import type { EntryLike } from 'recently-codes'
-import type { PinMethods } from './types'
+import type { EntryItem } from 'recently-codes'
+import type { PinMethods } from '../types'
 import { Action, ActionPanel, Icon, showToast } from '@raycast/api'
 
-export function PinActionSection(props: { entry: EntryLike, pinned?: boolean } & PinMethods) {
+export function PinActionSection(props: { entry: EntryItem, pinned?: boolean } & PinMethods) {
   const movements = props.getAllowedMovements(props.entry)
 
   return !props.pinned
