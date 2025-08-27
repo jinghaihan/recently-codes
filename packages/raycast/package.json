@@ -95,6 +95,14 @@
       "description": "Keep the order of the sections while searching folders, files, etc."
     },
     {
+      "name": "terminalApp",
+      "type": "appPicker",
+      "default": "com.apple.Terminal",
+      "required": false,
+      "title": "Terminal App",
+      "description": "Select which Terminal App to use when opening with a terminal"
+    },
+    {
       "name": "showGitBranch",
       "type": "checkbox",
       "title": "Git Integration",

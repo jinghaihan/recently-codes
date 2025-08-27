@@ -1,6 +1,6 @@
 import type { EntryLike } from 'recently-codes'
 import { fileURLToPath } from 'node:url'
-import { Action, ActionPanel, Grid, Icon, open, openExtensionPreferences } from '@raycast/api'
+import { Action, ActionPanel, Grid, Icon, open, openExtensionPreferences, showToast, Toast } from '@raycast/api'
 import { usePromise } from '@raycast/utils'
 import { useCallback, useState } from 'react'
 import { APPLICATION_NAME_MAP } from 'recently-codes'
@@ -85,6 +85,17 @@ function EntryItem(props: { entry: EntryLike, editorApp?: any }) {
             />
             <Action.ShowInFinder path={filePath} />
             <Action.OpenWith path={filePath} shortcut={{ modifiers: ['cmd'], key: 'o' }} />
+            {props.entry.type === 'folder' && preferences.terminalApp && (
+              <Action
+                title={`Open with ${preferences.terminalApp.name}`}
+                icon={{ fileIcon: preferences.terminalApp.path }}
+                shortcut={{ modifiers: ['cmd', 'shift'], key: 'o' }}
+                onAction={() =>
+                  open(path, preferences.terminalApp).catch(() =>
+                    showToast(Toast.Style.Failure, `Failed to open with ${preferences.terminalApp?.name}`),
+                  )}
+              />
+            )}
           </ActionPanel.Section>
           <ActionPanel.Section>
             <Action.CopyToClipboard title="Copy Name" content={name} shortcut={{ modifiers: ['cmd'], key: '.' }} />

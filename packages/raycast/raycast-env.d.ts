@@ -14,6 +14,8 @@ type ExtensionPreferences = {
   "layout": "list" | "grid",
   /** Advanced - Keep the order of the sections while searching folders, files, etc. */
   "keepSectionOrder": boolean,
+  /** Terminal App - Select which Terminal App to use when opening with a terminal */
+  "terminalApp"?: import("@raycast/api").Application,
   /** Git Integration - Display the current Git branch for files and folders in Git repositories */
   "showGitBranch": boolean
 }
