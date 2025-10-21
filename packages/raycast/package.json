@@ -27,7 +27,6 @@
     {
       "name": "index",
       "title": "Search Recent Projects",
-      "subtitle": "Crosside Recently Codes",
       "description": "List recent projects from VSCode and its forks like Cursor and Windsurf.",
       "mode": "view"
     }
@@ -131,6 +130,6 @@
     "@types/react": "catalog:types",
     "eslint": "catalog:lint",
     "react": "catalog:frontend",
-    "typescript": "catalog:dev"
+    "typescript": "catalog:tsc"
   }
 }

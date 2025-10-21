@@ -8,17 +8,16 @@ export function useRecentlyCodes() {
   const [loading, setLoading] = useState(false)
   const [recentlyCodes, setRecentlyCodes] = useState<EntryItem[]>([])
 
-  async function readRecentlyCodes() {
-    setLoading(true)
-    const recentlyCodes = await getRecentlyCodes({
-      gitBranch: preferences.showGitBranch,
-    })
-    setRecentlyCodes(recentlyCodes)
-    setLoading(false)
-  }
-
   useEffect(() => {
-    readRecentlyCodes()
+    async function fetchRecentlyCodes() {
+      setLoading(true)
+      const recentlyCodes = await getRecentlyCodes({
+        gitBranch: preferences.showGitBranch,
+      })
+      setRecentlyCodes(recentlyCodes)
+      setLoading(false)
+    }
+    fetchRecentlyCodes()
   }, [])
 
   async function removeEntry(entry: EntryItem) {

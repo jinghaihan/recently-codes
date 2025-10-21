@@ -1,7 +1,7 @@
 {
   "name": "recently-codes-monorepo",
   "version": "0.1.2",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.18.3",
   "description": "List and open recent projects from VSCode and its forks like Cursor and Windsurf.",
   "author": "jinghaihan",
   "license": "MIT",
@@ -51,16 +51,18 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",
+    "@eslint-react/eslint-plugin": "catalog:lint",
     "@types/node": "catalog:types",
     "bumpp": "catalog:cli",
     "eslint": "catalog:lint",
+    "eslint-plugin-react-hooks": "catalog:lint",
     "lint-staged": "catalog:lint",
     "pncat": "catalog:cli",
     "simple-git-hooks": "catalog:lint",
     "taze": "catalog:cli",
     "tsdown": "catalog:build",
     "tsx": "catalog:script",
-    "typescript": "catalog:dev",
+    "typescript": "catalog:tsc",
     "unbuild": "catalog:build",
     "vitest": "catalog:test"
   }

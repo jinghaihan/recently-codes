@@ -23,4 +23,5 @@ export default defineConfig({
       priority: 50,
     },
   ]),
+  postRun: 'eslint --fix "**/package.json" "**/pnpm-workspace.yaml"',
 })

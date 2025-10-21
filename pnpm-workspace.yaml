@@ -2,38 +2,40 @@ packages:
   - 'packages/*'
 catalogs:
   build:
-    tsdown: ^0.14.2
+    tsdown: ^0.15.9
     unbuild: ^3.6.1
   cli:
-    bumpp: ^10.2.3
-    pncat: ^0.5.0
-    taze: ^19.3.0
+    bumpp: ^10.3.1
+    pncat: ^0.7.3
+    taze: ^19.8.1
   database:
-    better-sqlite3: ^12.2.0
-  dev:
-    typescript: ^5.9.2
+    better-sqlite3: ^12.4.1
   frontend:
-    react: ^19.1.1
+    react: ^19.2.0
   lint:
-    '@antfu/eslint-config': ^5.2.1
-    eslint: ^9.34.0
-    lint-staged: ^16.1.5
+    '@antfu/eslint-config': ^6.0.0
+    '@eslint-react/eslint-plugin': ^2.2.2
+    eslint: ^9.38.0
+    eslint-plugin-react-hooks: ^7.0.0
+    lint-staged: ^16.2.5
     simple-git-hooks: ^2.13.1
   node:
     cac: ^6.7.14
   raycast:
-    '@raycast/api': ^1.102.6
+    '@raycast/api': ^1.103.3
     '@raycast/utils': ^2.2.1
   script:
-    tsx: ^4.20.5
+    tsx: ^4.20.6
   test:
     vitest: ^3.2.4
+  tsc:
+    typescript: ^5.9.3
   types:
     '@types/better-sqlite3': ^7.6.13
-    '@types/node': ^24.3.0
-    '@types/react': ^19.1.11
+    '@types/node': ^24.9.1
+    '@types/react': ^19.2.2
   utils:
-    lru-cache: ^11.1.0
+    lru-cache: ^11.2.2
     tildify: ^3.0.0
 onlyBuiltDependencies:
   - better-sqlite3
