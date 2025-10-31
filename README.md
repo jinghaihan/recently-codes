@@ -2,6 +2,14 @@
 
 A cross-IDE solution for sharing recent project history between VSCode and its forks like Cursor and Windsurf.
 
+> [!IMPORTANT]
+> **This repository has been deprecated.**
+>
+> Please visit the following repositories for the latest versions:
+> - **CLI**: [code-finder](https://github.com/jinghaihan/code-finder)
+> - **VSCode Extension**: [vscode-crosside-code-finder](https://github.com/jinghaihan/vscode-crosside-code-finder)
+> - **Raycast Extension**: [raycast-code-finder](https://github.com/jinghaihan/raycast-code-finder)
+
 ## Why Recently Codes?
 
 As developers, many of us now work with multiple code editors simultaneously. I personally use both VSCode and Cursor for different tasks, and I found it frustrating that my recent project history wasn't shared between them. Each editor maintains its own isolated history, making it difficult to quickly switch between projects across different IDEs.
